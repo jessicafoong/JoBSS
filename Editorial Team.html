@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editorial Team - The Journal of Business and Social Sciences</title>
+			<link rel="shortcut icon" href="img/inti logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Root Variables */
+        :root {
+            --primary-color: #335D2D;
+            --secondary-color: #4CAF50;
+            --light-bg: #F5F5F3;
+            --dark-bg: #1A1A1A;
+            --light-text: #333333;
+            --dark-text: #FFFFFF;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            transition: var(--transition);
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header.header-hidden {
+            transform: translateY(-100%);
+        }
+
+        /* Logo Section */
+        .logo-section {
+            background-color: var(--primary-color);
+            padding: 1rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-section a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Navigation Section */
+        .nav-section {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 0.75rem 2rem;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #A5D6A7;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 8rem auto 2rem;
+            transition: margin-top 0.3s ease-in-out;
+        }
+
+        /* Team Sections */
+        .team-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .team-intro h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        /* Editor Cards */
+        .editor-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .dark-mode .editor-card {
+            background: #2A2A2A;
+        }
+
+        .editor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .editor-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .editor-title {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .editor-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .editor-institution {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .editor-email {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .editor-email:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: #A5D6A7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo-section {
+                padding: 0.75rem 1rem;
+                text-align: left;
+            }
+
+            .logo-section a {
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-section {
+                display: none;
+                padding: 0;
+            }
+
+            .nav-section.active {
+                display: block;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            main {
+                margin-top: 4rem;
+            }
+
+            .team-intro {
+                padding-top: 1rem;
+            }
+
+            .editor-card {
+                margin: 0 auto;
+                max-width: 400px;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+		.custom-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white !important;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: var(--secondary-color);
+    color: white !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.custom-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+}
+
+
+/* Ensure visibility in dark mode */
+body.dark-mode .custom-button {
+    color: white !important;
+}
+
+body.dark-mode .custom-button:hover {
+    color: white !important;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-section">
+            <a href="index.html">EDITORIAL TEAM</a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation menu">☰</button>
+        </div>
+        <div class="nav-section">
+            <nav>
+                <ul class="nav-links">
+					 <li><a href="index.html">Home</a></li>
+                    <li><a href="About the Journal.html">About</a></li>
+                    <li><a href="Plagiarism.html">Plagiarism</a></li>
+                    <li><a href="Copyright, Consent & Privacy.html">Copyright</a></li>
+                    <li><a href="FAQs.html">FAQs</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="team-intro">
+            <h1>Meet Our Editorial Team</h1>
+            <p>Our distinguished editorial team brings together leading experts from around the world, dedicated to maintaining the highest standards of academic excellence and scholarly publishing.</p>
+        </section>
+
+        <section class="team-container">
+                <!-- Managing Editor -->
+            <div class="editor-card">
+                <img src="img/Dr. Jason See Toh Seong Kuan.png" alt="Dr. Jason See Toh Seong Kuan" class="editor-image">
+                <h2 class="editor-title">Managing Editor</h2>
+                <h3 class="editor-name">Dr. Jason See Toh Seong Kuan</h3>
+                <p class="editor-institution">INTI International University, Malaysia</p>
+                <a href="mailto:jasonsee.toh@newinti.edu.my" class="editor-email">jasonsee.toh@newinti.edu.my</a>
+            </div>
+
+            <!-- Associate Managing Editors -->
+            <div class="editor-card">
+                <img src="img/Dr Tan Seng Teck.png" alt="Dr. Tan Seng Teck" class="editor-image">
+                <h2 class="editor-title">Associate Managing Editor</h2>
+                <h3 class="editor-name">Professor Dr. Tan Seng Teck</h3>
+                <p class="editor-institution">INTI International University, Malaysia</p>
+                <a href="mailto:sengteck.tan@newinti.edu.my" class="editor-email">sengteck.tan@newinti.edu.my</a>
+            </div>
+
+            <div class="editor-card">
+                <img src="img/Dr Wong Chee Hoo..png" alt="Dr. Wong Chee Hoo" class="editor-image">
+                <h2 class="editor-title">Associate Managing Editor</h2>
+                <h3 class="editor-name">Professor Dr. Wong Chee Hoo</h3>
+                <p class="editor-institution">INTI International University, Malaysia</p>
+                <a href="mailto:cheehoo.wong@newinti.edu.my" class="editor-email">cheehoo.wong@newinti.edu.my</a>
+            </div>
+
+            <!-- Editorial Board Members -->
+            <div class="editor-card">
+                <img src="img/Martin Samy.png" alt="Dr. Martin Samy" class="editor-image">
+                <h2 class="editor-title">Editorial Board Member</h2>
+                <h3 class="editor-name">Professor Dr. Martin Samy</h3>
+                <p class="editor-institution">Kedge Business School, France</p>
+                <a href="mailto:dr.martin.samy@gmail.com" class="editor-email">dr.martin.samy@gmail.com</a>
+            </div>
+
+            <div class="editor-card">
+                <img src="img/dr william chua.jpg" alt="Dr. William Chua" class="editor-image">
+                <h2 class="editor-title">Editorial Board Member</h2>
+                <h3 class="editor-name">Professor Dr. William Chua</h3>
+                <p class="editor-institution">IPE Management School, France</p>
+                <a href="mailto:principal@mantissa.edu.my" class="editor-email">principal@mantissa.edu.my</a>
+            </div>
+
+            <div class="editor-card">
+                <img src="img/Shahryar-Sorooshian.png" alt="Dr. Shahryar Sorooshian" class="editor-image">
+                <h2 class="editor-title">Editorial Board Member</h2>
+                <h3 class="editor-name">Associate Professor Dr. Shahryar Sorooshian</h3>
+                <p class="editor-institution">Gothenburg University, Sweden</p>
+                <a href="mailto:shahryar.sorooshian@gu.se" class="editor-email">shahryar.sorooshian@gu.se</a>
+            </div>
+
+            <div class="editor-card">
+                <img src="img/ilham.jpeg" alt="Dr. Ilham Sentosa" class="editor-image">
+                <h2 class="editor-title">Editorial Board Member</h2>
+                <h3 class="editor-name">Associate Professor Dr. Ilham Sentosa</h3>
+                <p class="editor-institution">University Kuala Lumpur, Malaysia</p>
+                <a href="mailto:ilham@unikl.edu.my" class="editor-email">ilham@unikl.edu.my</a>
+            </div>
+
+            <div class="editor-card">
+                <img src="img/1710776532675.jpg" alt="Dr. Alex Lee" class="editor-image">
+                <h2 class="editor-title">Editorial Board Member</h2>
+                <h3 class="editor-name">Dr. Alex Lee</h3>
+                <p class="editor-institution">University of Hertfordshire, United Kingdom</p>
+                <a href="mailto:a.3.lee@herts.ac.uk" class="editor-email">a.3.lee@herts.ac.uk</a>
+            </div>
+
+            <div class="editor-card">
+                <img src="img/alvin liau.jpg" alt="Dr. Alvin Liau Chee How" class="editor-image">
+                <h2 class="editor-title">Editorial Board Member</h2>
+                <h3 class="editor-name">Dr. Alvin Liau Chee How</h3>
+                <p class="editor-institution">Victoria University, Australia</p>
+                <a href="mailto:chee.liau@live.vu.edu.au" class="editor-email">chee.liau@live.vu.edu.au</a>
+            </div>
+			
+        </section><br>
+		<div class="center">
+			<a href="https://forms.office.com/pages/responsepage.aspx?id=nuLdjE8LrUKq_dFbqH8TXYYejs2EmqROvqd4VGsCQA1UODdRTVZDQlNEWTJITlBQNkNNM0I4MlZKOS4u&route=shorturl" target="_blank" class="custom-button">Submit Your Manuscript Now!</a></div>
+		
+    </main>
+
+
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌓</button>
+
+    <footer>
+        <p>&copy; 2024 The Journal of Business and Social Sciences. All Rights Reserved.</p>
+        <div class="social-links">
+        <em><a href="https://newinti.edu.my/" target="_blank" rel="noopener">INTI Webpage</a> <a href="https://sites.google.com/student.newinti.edu.my/iudigitalhub/home" target="_blank" rel="noopener">&nbsp; &nbsp; &nbsp;INTI IU Digital Hub</a> <a href="https://intijournal.intimal.edu.my/" target="_blank" rel="noopener">&nbsp; &nbsp; &nbsp;INTI Journal</a></em> </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navSection = document.querySelector('.nav-section');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navSection.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('header')) {
+                navSection.classList.remove('active');
+            }
+        });
+
+        // Header scroll behavior
+        let lastScrollTop = 0;
+        let header = document.querySelector('header');
+        let ticking = false;
+
+        function onScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                    if (currentScrollTop > lastScrollTop && currentScrollTop > 200) {
+                        header.classList.add('header-hidden');
+                        navSection.classList.remove('active');
+                    } else {
+                        header.classList.remove('header-hidden');
+                    }
+                    
+                    lastScrollTop = currentScrollTop;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Theme toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

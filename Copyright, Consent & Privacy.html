@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal of Business and Social Sciences</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+       :root {
+            /* Color Palette */
+            --primary-color: #335D2D;
+            --secondary-color: #4CAF50;
+            --accent-color: #A5D6A7;
+            
+            /* Light Theme */
+            --bg-light: #F5F5F3;
+            --text-light: #333333;
+            --card-bg-light: #FFFFFF;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --hover-color: #274D24;
+            
+            /* Dark Theme */
+            --bg-dark: #121212;
+            --text-dark: #E0E0E0;
+            --card-bg-dark: #1E1E1E;
+            --shadow-dark: rgba(255, 255, 255, 0.1);
+
+            /* Transitions & Spacing */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-speed: 0.3s;
+            --border-radius: 12px;
+        }
+
+        /* Enhanced Header */
+        header {
+            background: #3C6436;
+            color: #FFFFFF;
+            padding: 0.7rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-light);
+        }
+
+        header h1 {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: #FFFFFF;
+    font-family: Poppins, sans-serif;
+        }
+
+        /* Enhanced Navigation */
+        .navbar {
+            top: 0;
+            background: rgba(51,93,45,0.92);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            z-index: 999;
+            position: flex;
+            top: 0;
+        }
+
+        .navbar a {
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .navbar a:hover::before {
+            width: 80%;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all var(--transition-speed) ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        /* Main Content */
+        .statements-container {
+            flex-grow: 1;
+            max-width: 900px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .statement-section {
+            background-color: var(--card-bg-light);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px var(--shadow-light);
+        }
+
+        .dark-mode .statement-section {
+            background-color: var(--card-bg-dark);
+            box-shadow: 0 4px 6px var(--shadow-dark);
+        }
+
+        .statement-section h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Theme Toggle with Improved Accessibility */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Accessibility Improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+            }
+        }
+
+        .custom-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: white !important;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .custom-button:hover {
+            background-color: var(--secondary-color);
+            color: white !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .custom-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensure visibility in dark mode */
+        body.dark-mode .custom-button {
+            color: white !important;
+        }
+
+        body.dark-mode .custom-button:hover {
+            color: white !important;
+        }
+
+        /* Enhanced Media Queries */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0.5rem;
+            }
+
+            .navbar a {
+                text-align: center;
+                margin: 0.2rem 0;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .navbar,
+            .theme-toggle,
+            .scroll-top {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+              <h1>COPYRIGHT, CONSENT, AND PRIVACY</h1>
+          </div>
+       
+    </header>
+	
+
+   <nav class="navbar">
+        <a href="index.html">Home</a> 
+	   <a href="About the Journal.html">About</a>
+        <a href="Editorial Team.html">Editorial Team</a>
+        <a href="Plagiarism.html">Plagiarism</a>
+       
+        <a href="FAQs.html">FAQs</a>
+    </nav>
+
+	
+    <main class="statements-container">
+        <section class="statement-section">
+            <h2>Copyright Statement</h2>
+            <p style="text-align: justify">Copyright defines the ownership of the contents published in JoBSS. As an open-access journal, the copyright of the papers published in JoBSS belongs to the producers of the contents and authors of the papers.</p>
+			<br>
+            <p style="text-align: justify">Authors are allowed to share, publicize, reprint, or use the paper published in JoBSS freely if the ethics of publication and integrity of the contents are maintained. All the intellectual properties produced from the papers published belong to the authors.</p>
+			<br>
+            <p style="text-align: justify">The readers are allowed to share, reprint, or use the papers or contents taken from the papers published by JoBSS with clear and proper citation, where credits are given to the authors and the publisher (as stated in CC-BY).</p>
+			<br>
+
+            <p style="text-align: justify">Before the paper publication, the corresponding author must sign a Publishing Agreement Form (PAF) to give JoBSS permission to publish, distribute, and publicize the paper submitted by the authors. JoBSS retains exclusive publishing rights of the paper.</p>
+        </section>
+
+        <section class="statement-section">
+            <h2>Consent and Privacy Statement</h2>
+            <p style="text-align: justify">Human subjects of a study should be made known to the usage of the information taken from them. Consent from the subjects of a study, especially in clinical and medical research is essential in publishing related information. JoBSS requires all authors to declare the consent given by the subjects of study wherever necessary.</p><br>
+
+            <p style="text-align: justify">The privacy of human subjects should be kept to safeguard their rights. JoBSS therefore will not publish sensitive personal information such as national identification number or social security number under any circumstances.</p><br>
+
+            <p style="text-align: justify">All papers with personal information of human subjects will be rejected. Additionally, information that reflects discrimination on genders or ethnicity will also be rejected.</p>
+        </section>
+
+        <section class="statement-section">
+            <h2>Personal Data Protection Statement</h2>
+            <p style="text-align: justify">JoBSS recognizes the importance of protecting personal information of authors and institutes. Serving as an open-access journal that currently requires no publication fees, authors should not provide sensitive information such as national identification numbers or credit card numbers to JoBSS.</p><br>
+
+            <p style="text-align: justify">Identification of institutions might be requested whenever required. We will fully comply with personal data protection acts and will not tolerate any leaking of sensitive information.</p>
+        </section>
+
+      <section class="statement-section">
+            <h2>Privacy Statement</h2>
+            <p style="text-align: justify">All personal information furnished by authors is strictly used for scholarly publication purposes and will not be divulged to any third parties. JoBSS privacy policy is governed by Malaysia's Personal Data Protection Act 2010.</p>
+        </section>
+		
+		<a href="https://forms.office.com/pages/responsepage.aspx?id=nuLdjE8LrUKq_dFbqH8TXYYejs2EmqROvqd4VGsCQA1UODdRTVZDQlNEWTJITlBQNkNNM0I4MlZKOS4u&route=shorturl" target="_blank" class="custom-button">Submit Your Manuscript Now!</a>
+    </main>
+
+    <button class="theme-toggle" aria-label="Toggle dark mode">🌓</button>
+
+    <footer>
+        <p>&copy; 2024 The Journal of Business and Social Sciences. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://newinti.edu.my/" target="_blank" rel="noopener"><em>INTI Webpage</em></a>
+            <a href="https://sites.google.com/student.newinti.edu.my/iudigitalhub/home" target="_blank" rel="noopener"><em>INTI IU Digital Hub</em></a>
+            <a href="https://intijournal.intimal.edu.my/" target="_blank" rel="noopener"><em>INTI Journal</em></a>
+        </div>
+    </footer>
+
+    <script>
+       // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const themeToggle = document.querySelector('.theme-toggle');
+
+    // Theme Toggle with Improved Accessibility
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDarkMode = body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        
+        // Update aria-label for screen readers
+        themeToggle.setAttribute('aria-label', 
+            isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'
+        );
+    });
+
+    // Persistent Theme Preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    }
+
+    // Prefers Color Scheme Detection
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (prefersDarkScheme.matches && !localStorage.getItem('theme')) {
+        body.classList.add('dark-mode');
+    }
+});
+    </script>
+</body>
+</html>
